@@ -31,3 +31,27 @@ for(let i = 2; i < 37; i++) {
 for(n of options2) {
     selectBaseN.append(n);
 }
+
+//operations
+
+class letter {
+    constructor(number, letter) {
+        this.number = number;
+        this.letter = letter;
+    }
+}
+
+const letterList = []
+
+function fillLetterList() {
+    for(let i = 0; i < 26; i++) {
+        let x = new letter(i+10, String.fromCharCode((i+10)+55));
+        letterList.push(x);
+    }
+}
+
+fillLetterList();
+
+function convert() {
+    
+}
