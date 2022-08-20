@@ -1,8 +1,9 @@
 const form = document.querySelector('#converter-main');
 const numN = document.querySelector('#numN');
-const numM = document.querySelector('#numM');
 const selectBaseN = document.querySelector('#baseN');
 const selectBaseM = document.querySelector('#baseM');
+const converBtn = document.querySelector('#cnvbtn');
+const resu = document.querySelector('#result');
 
 //fill both selects
 
@@ -52,6 +53,22 @@ function fillLetterList() {
 
 fillLetterList();
 
-function convert() {
-    
+// convert from binary to dec *temporary*
+
+converBtn.addEventListener('click', convertBin);
+
+function convertBin() {
+    let n = numN.value;
+    let x = selectBaseN.value;
+    let y = selectBaseM.value;
+    let answer = 0;
+    let exp = 0;
+
+    for(let i = n.length-1; i >= 0; i--) {
+        answer += ((Math.pow(x, exp))*parseInt(n[i]));
+        exp++;
+    }
+
+    resu.innerHTML = 'result: ' + answer.toString();
 }
+
