@@ -53,11 +53,21 @@ function fillLetterList() {
 
 fillLetterList();
 
+converBtn.addEventListener('click', mainSelector);
+
+function mainSelector() {
+    let x = selectBaseN.value;
+    let y = selectBaseM.value;
+    if (x == 10) {
+        convertDecToBase();
+    }else if(y == 10) {
+        convertBaseToDec();
+    }
+}
+
 // convert from base [2 - 9] to dec *temporary*
 
-converBtn.addEventListener('click', convertDecToBase);
-
-function convertBin() {
+function convertBaseToDec() {
     let n = numN.value;
     let x = selectBaseN.value;
     let y = selectBaseM.value;
@@ -76,7 +86,7 @@ function convertBin() {
 
 function convertDecToBase() {
     let n = parseInt(numN.value);
-    let x = parseInt(selectBaseN.value);
+    let x = parseInt(selectBaseM.value);
     let answer = [];
     let counter = 0;
     console.log('x: ', x);
@@ -92,6 +102,8 @@ function convertDecToBase() {
     answer.push(n);
     resu.innerHTML = 'result: ' + invertAnswer(answer);
 }
+
+//invert array and save it on string
 
 function invertAnswer(a) {
     let y = '';
