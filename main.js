@@ -59,33 +59,42 @@ function mainSelector() {
     let x = selectBaseN.value;
     let y = selectBaseM.value;
     if (x == 10) {
-        convertDecToBase();
+        resu.innerHTML = 'result: ' + convertDecToBase(parseInt(numN.value));
     }else if(y == 10) {
-        convertBaseToDec();
+        resu.innerHTML = 'result: ' + convertBaseToDec(numN.value);
+    }else if(x < 10 && y < 10) {
+        resu.innerHTML = 'result: ' + convertBasetoBase();
     }
+}
+
+//manage the converters in order to comvert base to base
+//base to dec and then dec to base
+//example (base: 2 to base: 9): base 2 to base 10 & base 10 to base 9
+
+function convertBasetoBase() {
+    return convertDecToBase(convertBaseToDec(numN.value)); 
 }
 
 // convert from base [2 - 9] to dec *temporary*
 
-function convertBaseToDec() {
-    let n = numN.value;
+function convertBaseToDec(n) {
     let x = selectBaseN.value;
     let y = selectBaseM.value;
     let answer = 0;
-    let exp = 0;    
+    let exp = 0;  
 
     for(let i = n.length-1; i >= 0; i--) {
         answer += ((Math.pow(x, exp))*parseInt(n[i]));
+        console.log(answer);
         exp++;
     }
-
-    resu.innerHTML = 'result: ' + answer.toString();
+    console.log(answer);
+    return answer.toString();
 }
 
 //convert from decimal to base [2-9]
 
-function convertDecToBase() {
-    let n = parseInt(numN.value);
+function convertDecToBase(n) {
     let x = parseInt(selectBaseM.value);
     let answer = [];
     let counter = 0;
@@ -100,7 +109,7 @@ function convertDecToBase() {
       counter ++;
     }
     answer.push(n);
-    resu.innerHTML = 'result: ' + invertAnswer(answer);
+    return invertAnswer(answer);
 }
 
 //invert array and save it on string
@@ -112,4 +121,5 @@ function invertAnswer(a) {
     }
     return y;
 }
+
 
