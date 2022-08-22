@@ -59,67 +59,88 @@ function mainSelector() {
     let x = selectBaseN.value;
     let y = selectBaseM.value;
     if (x == 10) {
-        resu.innerHTML = 'result: ' + convertDecToBase(parseInt(numN.value));
+        resu.innerHTML = 'result: ' + convertDecToBaseLetter(parseInt(numN.value));
     }else if(y == 10) {
-        resu.innerHTML = 'result: ' + convertBaseToDec(numN.value);
-    }else if(x < 10 && y < 10) {
-        resu.innerHTML = 'result: ' + convertBasetoBase();
+        resu.innerHTML = 'result: ' + convertBaseToDecLetter(numN.value);
+    }else {
+        resu.innerHTML = 'result: ' + convertBasetoBaseLetter();
     }
 }
 
-//manage the converters in order to comvert base to base
+//manage the converters in order to convert base to base
 //base to dec and then dec to base
 //example (base: 2 to base: 9): base 2 to base 10 & base 10 to base 9
 
-function convertBasetoBase() {
-    return convertDecToBase(convertBaseToDec(numN.value)); 
+
+function convertBasetoBaseLetter() {
+    return convertBaseToDecLetter(convertDecToBaseLetter(numN.value));
 }
 
-// convert from base [2 - 9] to dec *temporary*
+// convert from base x to dec
 
-function convertBaseToDec(n) {
+function convertBaseToDecLetter(n) {
     let x = selectBaseN.value;
-    let y = selectBaseM.value;
     let answer = 0;
     let exp = 0;  
-
     for(let i = n.length-1; i >= 0; i--) {
-        answer += ((Math.pow(x, exp))*parseInt(n[i]));
-        console.log(answer);
-        exp++;
+        if(n[i].charCodeAt() > 58) {
+            let o = convertLetterToNum(n[i]);
+            answer += ((Math.pow(x, exp))*o);
+            exp++;
+        }else {
+            answer += ((Math.pow(x, exp))*parseInt(n[i]));
+            exp++;
+        }
     }
-    console.log(answer);
     return answer.toString();
 }
 
-//convert from decimal to base [2-9]
+//convert from decimal to base x
 
-function convertDecToBase(n) {
+function convertDecToBaseLetter(n) {
     let x = parseInt(selectBaseM.value);
     let answer = [];
-    let counter = 0;
-    console.log('x: ', x);
-    console.log('n: ', n);
 
     while(n >= x) {
-      answer.push(n%x);
-      n = Math.floor(n/x);
-      console.log('n: ', n);
-      console.log('answer: ', answer[counter]);
-      counter ++;
+        if((n%x) >= 10) {
+            answer.push(convertNumToLetter(n%x));
+            n = Math.floor(n/x);
+        }else {
+            answer.push(n%x);
+            n = Math.floor(n/x);
+        }
     }
     answer.push(n);
-    return invertAnswer(answer);
+    return invertAnswerLetter(answer);
 }
 
-//invert array and save it on string
+//converts a number to it's equivalent in letter.
 
-function invertAnswer(a) {
+function convertNumToLetter(x) {
+    for (n of letterList) {
+        if(x == n.number)
+        return n.letter;
+    }
+}
+
+function convertLetterToNum(x) {
+    for (n of letterList) {
+        let u = x.toUpperCase();
+        if(u === n.letter)
+        return n.number;
+    }
+}
+
+//inverts the answer.
+
+function invertAnswerLetter(a) {
     let y = '';
-    while(a.length > 0) {
-        y += (a.pop());
+    for(let i = a.length-1; i >= 0; i--) {
+        if (a[i] >= 10) {
+            y += convertNumToLetter(a[i]);
+        }else {
+            y += a[i];    
+        }
     }
     return y;
 }
-
-
