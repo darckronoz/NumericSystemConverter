@@ -62,20 +62,22 @@ main {
 }
 
 .textL {
+    position: relative;
     font-size: 17px;
-    margin: 1vw;
+    margin: 2%;
 }
 
 .num {
+    position: relative;
     padding: 10px;
     border: none;
     border-radius: 19px;
     box-shadow: 2px 2px 10px black;
     background-color: #66cfca81;
-    margin: 10px 0;
+    margin: 2%;
 }
 
 .selBase {
-    margin: 10px -5px 10px -15px;
+    margin: 2%;
 }
 
