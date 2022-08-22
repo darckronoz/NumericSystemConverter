@@ -55,7 +55,7 @@ main {
     align-items: center;
     max-width: 400px;
     min-width: 200px;
-    padding:5vw 5vw 5vw 5vw;
+    padding: 20px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10vw;
@@ -64,7 +64,7 @@ main {
 .textL {
     position: relative;
     font-size: 17px;
-    margin: 2%;
+    margin: 1%;
 }
 
 .num {
@@ -74,10 +74,45 @@ main {
     border-radius: 19px;
     box-shadow: 2px 2px 10px black;
     background-color: #66cfca81;
-    margin: 2%;
+    margin: 1%;
 }
 
 .selBase {
-    margin: 2%;
+    margin-top: 0.3%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    border: none;
+    border-radius: 19px;
+    padding: 5px;
+    box-shadow: 2px 2px 10px black;
+    background-color: #66cfca81;
+    text-align: center;
 }
 
+#cnvbtn {
+    margin-top: 0.3%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    padding: 10px;
+    border: none;
+    border-radius: 19px;
+    box-shadow: 2px 2px 10px black;
+    background-color: #66cfca81;
+}
+
+#cnvbtn:hover {
+    box-shadow: 4px 4px 12px black;
+    background-color: #b7ffe7c5;
+}
+
+.selBase:hover {
+    box-shadow: 4px 4px 12px black;
+    background-color: #b7ffe7c5;
+}
+
+.num:focus {
+    box-shadow: 4px 4px 12px black;
+    background-color: #b7ffe7c5;
+}
