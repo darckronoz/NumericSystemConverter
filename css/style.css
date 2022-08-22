@@ -32,6 +32,11 @@ main {
     align-items: center;
 }
 
+.formD {
+    display: grid;
+    align-items: center;
+}
+
 #description-div {
     padding-left: 5vw;
     padding-right: 5vw;
@@ -41,14 +46,18 @@ main {
 }
 
 #convert-main {
+    display: grid;
     box-shadow: 0px 10px 30px black;;
     text-align: center;
     border: none;
     border-radius: 20px;
     background-color: #3c837a6b;
     align-items: center;
-    width: auto;
-    padding:1vw 1vw 1vw 1vw;
+    max-width: 400px;
+    min-width: 200px;
+    padding:5vw 5vw 5vw 5vw;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 10vw;
 }
 
@@ -64,5 +73,9 @@ main {
     box-shadow: 2px 2px 10px black;
     background-color: #66cfca81;
     margin: 10px 0;
+}
+
+.selBase {
+    margin: 10px -5px 10px -15px;
 }
 

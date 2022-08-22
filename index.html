@@ -23,16 +23,18 @@
                 only from base 2 to base 32.
             </p>
         </div>
-        <form id="convert-main">
-            <label class="textL" for="numN">Number</label>
-            <input class="num" id="numN" placeholder="n">
-            <label class="textL" for="baseN">from base: </label>
-            <select name="base 1" id="baseN"></select>
-            <label class="textL" for="baseM">to base: </label>
-            <select name="base 2" id="baseM"></select>
-            <p id="result"></p>
-            <button type="button" id="cnvbtn">convert</button>
-        </form>
+        <div class="formD">
+            <form id="convert-main">
+                <label class="textL" for="numN">Number</label>
+                <input class="num" id="numN" placeholder="n">
+                <label class="textL" for="baseN">from base: </label>
+                <select name="base 1" id="baseN" class="selBase"></select>
+                <label class="textL" for="baseM">to base: </label>
+                <select name="base 2" id="baseM" class="selBase"></select>
+                <p id="result"></p>
+                <button type="button" id="cnvbtn">convert</button>
+            </form>
+        </div>
     </main>
     <script src="./main.js"></script>
 </body>
