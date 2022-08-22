@@ -73,7 +73,7 @@ function mainSelector() {
 
 
 function convertBasetoBaseLetter() {
-    return convertBaseToDecLetter(convertDecToBaseLetter(numN.value));
+    return convertDecToBaseLetter(convertBaseToDecLetter(numN.value));
 }
 
 // convert from base x to dec
