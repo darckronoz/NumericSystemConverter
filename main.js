@@ -59,7 +59,7 @@ function mainSelector() {
     let x = selectBaseN.value;
     let y = selectBaseM.value;
     if (x == 10) {
-        resu.innerHTML = 'result: ' + convertDecToBaseLetter(parseInt(numN.value));
+        resu.innerHTML = 'result: ' + convertDecToBaseLetter(parseFloat(numN.value));
     }else if(y == 10) {
         resu.innerHTML = 'result: ' + convertBaseToDecLetter(numN.value);
     }else {
@@ -82,17 +82,21 @@ function convertBaseToDecLetter(n) {
     let x = selectBaseN.value;
     let answer = 0;
     let exp = 0;  
-    for(let i = n.length-1; i >= 0; i--) {
-        if(n[i].charCodeAt() > 58) {
-            let o = convertLetterToNum(n[i]);
-            answer += ((Math.pow(x, exp))*o);
-            exp++;
-        }else {
-            answer += ((Math.pow(x, exp))*parseInt(n[i]));
-            exp++;
+    if(verifyFloat(n)) {
+        console.log('es un float xd asd');
+    }else {
+        for(let i = n.length-1; i >= 0; i--) {
+            if(n[i].charCodeAt() > 58) {
+                let o = convertLetterToNum(n[i]);
+                answer += ((Math.pow(x, exp))*o);
+                exp++;
+            }else {
+                answer += ((Math.pow(x, exp))*parseInt(n[i]));
+                exp++;
+            }
         }
+        return answer.toString();
     }
-    return answer.toString();
 }
 
 //convert from decimal to base x
@@ -100,18 +104,33 @@ function convertBaseToDecLetter(n) {
 function convertDecToBaseLetter(n) {
     let x = parseInt(selectBaseM.value);
     let answer = [];
-
-    while(n >= x) {
-        if((n%x) >= 10) {
-            answer.push(convertNumToLetter(n%x));
-            n = Math.floor(n/x);
-        }else {
-            answer.push(n%x);
-            n = Math.floor(n/x);
+    if(verifyFloat(n)) {
+        console.log('es un float xd');
+    }else {
+        while(n >= x) {
+            if((n%x) >= 10) {
+                answer.push(convertNumToLetter(n%x));
+                n = Math.floor(n/x);
+            }else {
+                answer.push(n%x);
+                n = Math.floor(n/x);
+            }
         }
+        answer.push(n);
+        return invertAnswerLetter(answer);
     }
-    answer.push(n);
-    return invertAnswerLetter(answer);
+}
+
+//base x to decimal but float
+
+function convertBaseToDecFloat() {
+    //to do 
+}
+
+//decimal to base x but float
+
+function convertDectoBaseFloat() {
+    //to do
 }
 
 //converts a number to it's equivalent in letter.
@@ -143,4 +162,16 @@ function invertAnswerLetter(a) {
         }
     }
     return y;
+}
+
+//verifies if the number is a float number
+
+function verifyFloat(a) {
+    x = a.toString();
+    for(let i = 0; i < x.length; i++) {
+        if(x[i] == '.') {
+            return true;
+        }
+    }
+    return false;
 }
