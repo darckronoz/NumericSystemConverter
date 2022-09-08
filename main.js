@@ -143,15 +143,19 @@ function manageDecToBaseFloat(n) {
 function convertBaseToDecFloat(n, x) {
     let exp = -1;
     let answer = 0;
+    let dec = 1;
     for(let i = 0; i < n.length; i++) {
         if(n[i].charCodeAt() > 58) {
             let o = convertLetterToNum(n[i]);
-            answer += ((Math.pow(x, exp))*o);
+            answer += parseFloat(((Math.pow(x, exp))*o).toFixed(dec));
             exp--;
         }else {
-            answer += ((Math.pow(x, exp))*parseInt(n[i]));
+            answer += parseFloat(((Math.pow(x, exp))*parseInt(n[i])).toFixed(dec));
             exp--;
         }
+        console.log(answer);
+        console.log(dec);
+        dec++;
     }
     return answer.toString();
 }
@@ -163,17 +167,18 @@ function convertDectoBaseFloat(n) {
     let y = n;
     let answer = '';
     let ob = false;
-    while(!ob) {
+    let decCounter = 0;
+    while(!ob && decCounter < 5) {
         y = (parseFloat(y)*x);
         let m = splitFloat(y.toString());
         if(m[1] == 0) {
             ob = true;
-            answer += m[0];
+            answer += m[1];
             break;
         }
-        answer += m[0];
+        decCounter++;
+        answer += m[1];
     }
-
     return answer;
 }
 
@@ -259,6 +264,3 @@ function verifyFloat(a) {
     
 }
 
-function sumIntAndFloat(a, b) {
-
-}
