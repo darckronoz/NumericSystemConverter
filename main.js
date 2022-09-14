@@ -58,12 +58,18 @@ converBtn.addEventListener('click', mainSelector);
 function mainSelector() {
     let x = selectBaseN.value;
     let y = selectBaseM.value;
-    if (x == 10) {
-        resu.innerHTML = 'result: ' + convertDecToBaseLetter(numN.value);
-    }else if(y == 10) {
-        resu.innerHTML = 'result: ' + convertBaseToDecLetter(numN.value);
+    if(verifyInput(numN.value)) {
+        if (x == 10) {
+            resu.innerHTML = 'result: ' + convertDecToBaseLetter(numN.value);
+        }else if(y == 10) {
+            resu.innerHTML = 'result: ' + convertBaseToDecLetter(numN.value);
+        }else {
+            resu.innerHTML = 'result: ' + convertBasetoBaseLetter();
+        }
     }else {
-        resu.innerHTML = 'result: ' + convertBasetoBaseLetter();
+        resu.innerHTML = 'verify your input.'
+        console.error('input incorrecto');
+
     }
 }
 
@@ -265,4 +271,22 @@ function verifyFloat(a) {
     }
     
 }
+    //verifies the user input
+
+    function verifyInput(input) {
+        let n = parseInt(selectBaseN.value);
+        let x = 0;
+        for(let i = 0; i < input.length; i++) {
+            if(input[i].charCodeAt() > 58) {
+                x = convertLetterToNum(input[i]);
+            }else {
+                x = parseInt(input[i]);
+            }
+            
+            if(x >= n) {
+                return false;
+            }
+        }
+        return true;
+    }
 
